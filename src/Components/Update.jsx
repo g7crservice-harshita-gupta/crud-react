@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import validator from 'validator'
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -19,6 +20,11 @@ const Update = () => {
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log("Id...", id);
+    if (validator.isEmail(email)) {
+    } else {
+      alert('Please enter valid email address!');
+      return;
+    }
     axios
       .put(`https://6450fda4e1f6f1bb22a4af13.mockapi.io/crud-reactjs/${id}`, {
         name: name,
