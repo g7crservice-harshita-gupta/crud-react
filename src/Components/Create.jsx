@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import validator from 'validator';
 const Create = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,6 +10,11 @@ const Create = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("clciekd");
+    if (validator.isEmail(email)) {
+    } else {
+      alert('Please enter valid email address!');
+      return;
+    }
     axios
       .post("https://6450fda4e1f6f1bb22a4af13.mockapi.io/crud-reactjs", {
         name: name,
